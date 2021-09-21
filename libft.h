@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:21:36 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/21 14:18:46 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/21 22:14:36 by potero           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 void	*ft_memchr(const void *str, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *str, int c, size_t len);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
