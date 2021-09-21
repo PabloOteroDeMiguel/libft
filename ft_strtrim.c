@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 13:49:05 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/21 14:35:31 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/21 22:33:48 by potero           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_end(char const *s1, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
-	int		j;
+//	int		j;
 	int		n;
 	int		m;
 	char	*str;
@@ -46,13 +46,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (0);
-	j = 0;
+/*	j = 0;
 	while (j < i)
 	{
 		str[j] = s1[n];
 		j++;
 		n++;
-	}
+	}*/
+	ft_strlcpy(str, &s1[n], i + 1);
 	return (str);
 }
 
