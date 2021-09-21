@@ -6,11 +6,11 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 13:48:23 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/20 13:48:40 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/21 08:54:09 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	n;

@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 10:09:21 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/15 10:52:10 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/21 09:14:21 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *str, int c)
 	i = ft_strlen(str);
 	while (i >= 0)
 	{
-		if (str[i] == c)
+		if (str[i] == (unsigned char)c)
 			return ((char *)(&str[i]));
 		i--;
 	}

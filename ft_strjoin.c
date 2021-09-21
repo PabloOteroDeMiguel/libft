@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/20 09:46:50 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/21 08:53:00 by potero-d         ###   ########.fr       */
+/*   Created: 2021/09/21 12:48:36 by potero-d          #+#    #+#             */
+/*   Updated: 2021/09/21 13:47:40 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<libft.h>
+#include"libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
-	size_t	z;
+	char	*str;
 
-	z = ft_strlen(dst);
-	j = ft_strlen(dst);
-	i = 0;
-	if ((z < dstsize - 1) && dstsize > 0)
-	{
-		while ((j < dstsize - 1) && (src[i] != '\0'))
-		{
-			dst[j] = src[i];
-			i++;
-			j++;
-		}
-		dst[j] = '\0';
-	}
-	if (z >= dstsize)
-		z = dstsize;
-	return (z + ft_strlen(src));
+	if (!s1 || !s2)
+		return (0);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (0);
+	ft_strlcpy(str, s1, (ft_strlen(s1) + 1));
+	ft_strlcat(str, s2, (ft_strlen(s1) + ft_strlen(s2) + 1));
+	return (str);
 }

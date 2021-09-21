@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:21:36 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/20 15:11:58 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:18:46 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int		ft_atoi(char *str);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
 
 #endif
