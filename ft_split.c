@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 09:01:32 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/22 14:19:54 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:48:43 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 int	ft_word(char const *s, char c)
 {
 	unsigned int	i;
-	int w;
+	int				w;
+
 	i = 0;
 	w = 0;
 	if (s[i] == c)
@@ -32,11 +33,11 @@ int	ft_word(char const *s, char c)
 		w = 1;
 		while (i < (ft_strlen(s) - 1))
 		{
-			if ((s[i] == c) && (s[i - 1] != c)) 
+			if ((s[i] == c) && (s[i - 1] != c))
 				w++;
 			i++;
 		}
-		if (s[i - 1] == c && s[i - 2] == c && w > 0)
+		if (s[i - 1] == c && s[i - 2] == c && w > 0 && ft_strlen(s) > 0) 
 			w = w - 1;
 	}
 	return (w);
@@ -52,7 +53,7 @@ int	ft_wordlen(char const *s, char c)
 	return (i);
 }
 
-int	ft_removec(char const *s, char c)
+static int	ft_removec(char const *s, char c)
 {
 	size_t	i;
 
@@ -68,17 +69,19 @@ char	**ft_split(char const *s, char c)
 	unsigned int		i;
 	int					j;
 	char				**str;
-	
+
 	i = 0;
 	if (s == 0)
 		return (0);
-	if (s[i] == c)
+	if (ft_strlen(s) == 0)
+		return (0);
+		if (s[i] == c)
 		i = ft_removec(s, c);
 	if (i == (ft_strlen(s) - 1))
 		w = 0;
 	else
 		w = ft_word(&s[i], c);
-	str = malloc(sizeof(char *)  * w + 1);
+	str = malloc(sizeof(char *) * w + 1);
 	if (!str)
 		return (0);
 	j = 0;
@@ -91,8 +94,8 @@ char	**ft_split(char const *s, char c)
 //			printf("str: %s\n", str[j]);
 //			printf("len: %zu\n", ft_strlen(str[j]));
 //			printf("%c\n", str[j][(ft_strlen(str[j])-1)]);
-		if ((str[j][(ft_strlen(str[j])-1)]) == c)
-			str[j] = ft_substr(str[j], 0, (ft_strlen(str[j])-1));
+		if ((str[j][(ft_strlen(str[j]) - 1)]) == c && c != '\0')
+			str[j] = ft_substr(str[j], 0, (ft_strlen(str[j]) - 1));
 //			printf("str: %s\n", str[j]);
 		i = i + ft_wordlen(&s[i], c);
 		i = i + ft_removec(&s[i], c);
