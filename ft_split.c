@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 09:01:32 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/22 15:48:43 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/23 10:33:23 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include"libft.h"
 #include<stdio.h>
 
-int	ft_word(char const *s, char c)
+static int	ft_word(char const *s, char c)
 {
 	unsigned int	i;
 	int				w;
@@ -37,13 +37,13 @@ int	ft_word(char const *s, char c)
 				w++;
 			i++;
 		}
-		if (s[i - 1] == c && s[i - 2] == c && w > 0 && ft_strlen(s) > 0) 
+		if (s[i] == c && s[i - 1] == c && w > 0 && ft_strlen(s) > 0)
 			w = w - 1;
 	}
 	return (w);
 }
 
-int	ft_wordlen(char const *s, char c)
+static int	ft_wlen(char const *s, char c)
 {
 	size_t	i;
 
@@ -53,7 +53,7 @@ int	ft_wordlen(char const *s, char c)
 	return (i);
 }
 
-static int	ft_removec(char const *s, char c)
+static int	ft_rmvc(char const *s, char c)
 {
 	size_t	i;
 
@@ -71,34 +71,21 @@ char	**ft_split(char const *s, char c)
 	char				**str;
 
 	i = 0;
-	if (s == 0)
+	if ((s == 0) || ((ft_strlen(s) == 0) && (c != '\0')))
 		return (0);
-	if (ft_strlen(s) == 0)
-		return (0);
-		if (s[i] == c)
-		i = ft_removec(s, c);
-	if (i == (ft_strlen(s) - 1))
-		w = 0;
-	else
-		w = ft_word(&s[i], c);
+	if (s[i] == c && c != '\0')
+		i = ft_rmvc(s, c);
+	w = ft_word(&s[i], c);
 	str = malloc(sizeof(char *) * w + 1);
 	if (!str)
 		return (0);
 	j = 0;
 	while (j < w)
 	{
-//			printf("s: %s\n", s);
-//			printf("i: %d\n", i);
-//			printf("W+1: %d\n", ft_wordlen(&s[i], c) + 1);
-		str[j] = ft_substr(s, i, ft_wordlen(&s[i], c) + 1);
-//			printf("str: %s\n", str[j]);
-//			printf("len: %zu\n", ft_strlen(str[j]));
-//			printf("%c\n", str[j][(ft_strlen(str[j])-1)]);
+		str[j] = ft_substr(s, i, ft_wlen(&s[i], c) + 1);
 		if ((str[j][(ft_strlen(str[j]) - 1)]) == c && c != '\0')
 			str[j] = ft_substr(str[j], 0, (ft_strlen(str[j]) - 1));
-//			printf("str: %s\n", str[j]);
-		i = i + ft_wordlen(&s[i], c);
-		i = i + ft_removec(&s[i], c);
+		i = i + (ft_wlen(&s[i], c) + (ft_rmvc(&s[i + (ft_wlen(&s[i], c))], c)));
 		j++;
 	}
 	str[j] = 0;

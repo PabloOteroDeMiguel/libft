@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:21:36 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/22 09:02:31 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/22 08:47:36 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 void	*ft_memmove(void *dst, const void *src, size_t len);
+char    **ft_split(char const *s, char c);
+char    *ft_itoa(int n);
+
 #endif
