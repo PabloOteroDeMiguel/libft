@@ -43,5 +43,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 char    **ft_split(char const *s, char c);
 char    *ft_itoa(int n);
+char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 #endif
