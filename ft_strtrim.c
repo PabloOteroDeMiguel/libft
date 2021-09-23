@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 13:49:05 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/21 22:33:48 by potero           ###   ########.fr       */
+/*   Updated: 2021/09/23 15:53:09 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		n;
 	int		m;
 	char	*str;
-
+	
+	if (!s1 || !set)
+		return (0);
+	if (ft_strlen(s1) == 0 || ft_strlen(set) == 0)
+	{
+		str = ft_strdup(s1);
+		return (str);
+	}
 	n = ft_start(s1, set);
 	m  = ft_end(s1, set);
 	i = (ft_strlen(s1) - n - m);

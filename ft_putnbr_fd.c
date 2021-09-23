@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 12:40:26 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/23 13:57:49 by potero-d         ###   ########.fr       */
+/*   Created: 2021/08/19 08:12:23 by potero-d          #+#    #+#             */
+/*   Updated: 2021/09/23 13:49:15 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdlib.h>
-#include"libft.h"
+#include<unistd.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t		i;
-	char		*str;
+	unsigned int	a;
+	char			c;
 
-	i = 0;
-	if (s == 0)
-		return (0);
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!str)
-		return (0);
-	while (i < ft_strlen(s))
+	if (n < 0)
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		write(fd, "-", 1);
+		n = n * -1;
 	}
-	str[i] = '\0';
-	return (str);
+	a = n;
+	if (a == 0)
+	{
+		write(fd, "0", 1);
+	}
+	if (a > 0 && a < 10)
+	{
+		c = a + 48;
+		write(fd, &c, 1);
+	}
+	if (a >= 10)
+	{
+		ft_putnbr_fd((a / 10), fd);
+		c = (a % 10 + 48);
+		write(fd, &c, 1);
+	}
 }

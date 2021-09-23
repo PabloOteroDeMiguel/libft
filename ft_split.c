@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 09:01:32 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/23 10:33:23 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/23 14:01:12 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**ft_split(char const *s, char c)
 	char				**str;
 
 	i = 0;
-	if ((s == 0) || ((ft_strlen(s) == 0) && (c != '\0')))
+	if ((!s) || ((ft_strlen(s) == 0) || (c == '\0')))
 		return (0);
 	if (s[i] == c && c != '\0')
 		i = ft_rmvc(s, c);
