@@ -6,7 +6,7 @@
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:21:36 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/23 13:56:34 by potero-d         ###   ########.fr       */
+/*   Updated: 2021/09/26 11:22:18 by potero           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 #endif
