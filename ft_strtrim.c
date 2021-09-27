@@ -38,4 +38,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (0);
 	return (str);
 }
-

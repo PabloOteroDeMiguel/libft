@@ -20,7 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (0);
 	if (len > ft_strlen(s))
 		len = ft_strlen(s);
-	if (len == 1 && start > ft_strlen(s))
+	if (len == 1 && start >= ft_strlen(s))
 	{
 		str = malloc(1);
 		if (!str)
@@ -36,5 +36,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	{	
 		ft_strlcpy(str, &s[start], len + 1);
 	}
+	else
+		return (ft_strdup(""));
 	return (str);
 }

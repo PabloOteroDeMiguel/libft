@@ -21,7 +21,7 @@ static int	ft_word(char const *s, char c)
 
 	i = 0;
 	w = 0;
-	if ((c == '\0') || (ft_strlen(s) == 0))
+	if (ft_strlen(s) == 0)
 		return (0);
 	if (s[i] == c)
 	{
@@ -30,71 +30,74 @@ static int	ft_word(char const *s, char c)
 		if (i == (ft_strlen(s) - 1))
 			return (0);
 	}
-	else
+	i = 1;
+	w = 1;
+	while (i < (ft_strlen(s) - 1))
 	{
-		w = 1;
-		while (i < (ft_strlen(s) - 1))
-		{
-			if ((s[i] == c) && (s[i - 1] != c))
-				w++;
-			i++;
-		}
-		if (s[i] == c && s[i - 1] == c && w > 0 && ft_strlen(s) > 0)
-			w = w - 1;
+		if ((s[i] == c) && (s[i - 1] != c))
+			w++;
+		i++;
 	}
+	if (s[i] == c && s[i - 1] == c && w > 0 && ft_strlen(s) > 0)
+		w = w - 1;
 	return (w);
 }
 
-static size_t	ft_wlen(char const *s, char c)
+static size_t	wo(char const *s, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while ((s[i] != c) && (i < (ft_strlen(s) - 1)))
+	while ((s[i] != c) && (i < (ft_strlen(s))))
 		i++;
 	return (i);
 }
 
-static int	ft_rmvc(char const *s, char c)
+static int	ft_r(char const *s, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while ((s[i] == c) && (i < (ft_strlen(s) - 1)))
+	while ((s[i] == c) && (i < (ft_strlen(s))))
 		i++;
 	return (i);
+}
+
+static char	**ft_nosplit(char const *s)
+{
+	char	**str;
+
+	str = malloc(sizeof(char *) * 2);
+	str[0] = (ft_strdup(s));
+	str[1] = 0;
+	return (str);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int					w;
-	unsigned int		i;
-	int					j;
+	unsigned int		i[3];
 	char				**str;
 
-	i = 0;
+	i[2] = 0;
 	if (!s)
 		return (0);
-	if (s[i] == c)
-		i = ft_rmvc(s, c);
-	w = ft_word(&s[i], c);
-	str = malloc(sizeof(char *) * (w + 1));
+	if ((ft_strchr(s, c) == 0) && ft_strlen(s) > 0)
+		return (ft_nosplit(s));
+	if (s[i[2]] == c)
+		i[2] = ft_r(s, c);
+	i[0] = ft_word(&s[i[2]], c);
+	str = malloc(sizeof(char *) * (i[0] + 1));
 	if (!str)
 		return (0);
-	j = 0;
-	if (ft_strlen(s) - 1 == ft_wlen(&s[i], c))
+	i[1] = 0;
+	while (i[1] < i[0])
 	{
-		str[j] = ft_strdup(s);
-		j++;
+		str[i[1]] = ft_substr(s, i[2], (wo(&s[i[2]], c)));
+		if ((str[i[1]][(ft_strlen(str[i[1]]) - 1)]) == c)
+			str[i[1]] = ft_substr(str[i[1]], 0, (ft_strlen(str[i[1]]) - 1));
+		i[2] = i[2] + wo(&s[i[2]], c) + ft_r(&s[i[2] + (wo(&s[i[2]], c))], c);
+		i[1]++;
 	}
-	while (j < w)
-	{
-		str[j] = ft_substr(s, i, (ft_wlen(&s[i], c) + 1));
-		if ((str[j][(ft_strlen(str[j]) - 1)]) == c)
-			str[j] = ft_substr(str[j], 0, (ft_strlen(str[j]) - 1));
-		i = i + (ft_wlen(&s[i], c) + (ft_rmvc(&s[i + (ft_wlen(&s[i], c))], c)));
-		j++;
-	}
-	str[j] = 0;
+	str[i[1]] = 0;
 	return (str);
 }

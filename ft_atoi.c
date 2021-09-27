@@ -10,20 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+static int	ft_num(unsigned long long n, int c)
+{
+	if (n > 9223372036854775807 && c == -1)
+		return (0);
+	if (n > 9223372036854775807 && c == 1)
+		return (-1);
+	return (n * c);
+}
+
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	n;
-	int	c;
+	int					i;
+	unsigned long long	n;
+	int					c;
 
 	i = 0;
 	while ((str[i] == ' ') || ((str[i] > 8) && (str[i] < 14 )))
 		i++;
-	c = 0;
+	c = 1;
 	if ((str[i] == '-') || (str[i] == '+'))
 	{
 		if (str[i] == '-')
-			c++;
+			c = -1;
 		i++;
 	}
 	n = 0;
@@ -32,7 +41,5 @@ int	ft_atoi(const char *str)
 		n = (n * 10) + (str[i] - 48);
 		i++;
 	}
-	if ((c % 2) == 1)
-		return (n * -1);
-	return (n);
+	return (ft_num(n, c));
 }

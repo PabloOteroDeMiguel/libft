@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include<string.h>
-
-size_t	ft_strlen(const char *str);
+#include"libft.h"
 
 char	*ft_strnstr(const char *str, const char *nstr, size_t len)
 {
@@ -32,7 +31,10 @@ char	*ft_strnstr(const char *str, const char *nstr, size_t len)
 				return ((char *)(&str[i - j + 1]));
 		}
 		else
+		{
+			i = i - j;
 			j = 0;
+		}
 		i++;
 	}
 	return (0);
