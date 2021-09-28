@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 11:30:40 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/28 13:35:41 by potero-d         ###   ########.fr       */
+/*   Created: 2021/09/28 13:42:19 by potero-d          #+#    #+#             */
+/*   Updated: 2021/09/28 14:12:10 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	int	i;
-	int	j;
-
-	if (!lst)
-		return (0);
-	i = ft_lstsize(lst);
-	j = 0;
-	while (j < i - 1)
+	if (lst)
 	{
-		lst = lst->next;
-		j++;
+		del(lst->content);
+		free(lst);
 	}
-	return (lst);
 }

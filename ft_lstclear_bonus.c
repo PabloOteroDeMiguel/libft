@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 11:30:40 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/28 13:35:41 by potero-d         ###   ########.fr       */
+/*   Created: 2021/09/28 15:06:17 by potero-d          #+#    #+#             */
+/*   Updated: 2021/09/28 15:20:10 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	int	i;
-	int	j;
+	t_list	*aux1;
+	t_list	*aux2;
 
-	if (!lst)
-		return (0);
-	i = ft_lstsize(lst);
-	j = 0;
-	while (j < i - 1)
+	aux1 = *lst;
+	while (aux1)
 	{
-		lst = lst->next;
-		j++;
+		aux2 = aux1->next;
+		del(aux1->content);
+		free(aux1);
+		aux1 = aux2 ;
 	}
-	return (lst);
+	*lst = NULL;
 }

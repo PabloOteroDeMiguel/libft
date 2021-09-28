@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: potero-d <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 11:30:40 by potero-d          #+#    #+#             */
-/*   Updated: 2021/09/28 13:35:41 by potero-d         ###   ########.fr       */
+/*   Created: 2021/09/28 15:20:30 by potero-d          #+#    #+#             */
+/*   Updated: 2021/09/28 15:31:08 by potero-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	i;
-	int	j;
+	t_list	*aux;
 
-	if (!lst)
-		return (0);
-	i = ft_lstsize(lst);
-	j = 0;
-	while (j < i - 1)
+	aux = lst;
+	if (lst)
 	{
-		lst = lst->next;
-		j++;
+		while (aux)
+		{
+			f(aux->content);
+			aux = aux->next;
+		}
 	}
-	return (lst);
 }
