@@ -37,6 +37,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		ft_strlcpy(str, &s[start], len + 1);
 	}
 	else
-		return (ft_strdup(""));
+		ft_strlcpy(str, "", 1);
 	return (str);
 }
